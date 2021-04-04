@@ -1,7 +1,3 @@
-// ROBY PURNOMO (16520331)
-// LUTHFI RESTU K (16520110)
-/* Program Kecoak vs Urang Robot */
-
 #include <iostream>
 
 using namespace std;
@@ -131,49 +127,68 @@ void pindah(kecoak temp[], robot karakter){
         cout << "D : kanan\n";
     } else if (karakter.x != 0)
         cout << "A : kiri\n";
-    else if (karakter.x != 20)
+    else if (karakter.x != 20){
         cout << "D : kanan\n";
+    }
     if (karakter.y != 0 && karakter.y != 20){
         cout << "W : maju\n";
         cout << "S : mundur\n";
-    } else if (karakter.y != 0)
+    }
+    else if (karakter.y != 0){
         cout << "S : mundur\n";
-    else if (karakter.y != 20)
+    }
+    else if (karakter.y != 20){
         cout << "W : maju\n";
+    }
     char n;
     cin >> n;
     if (n == 'W'){
         karakter.y++;
         salah = 0;
-        for (int i = 0; i < 20; ++i)
-            if (karakter.y == temp[i].y && karakter.x == temp[i].y && (temp[i].health != 0 || temp[i].health != -1))
+        for (int i = 0; i < 20; ++i){
+            if (karakter.y == temp[i].y && karakter.x == temp[i].y && (temp[i].health != 0 || temp[i].health != -1)){
                 salah++;
-        if (salah > 0)
+            }
+        }
+        if (salah > 0){
             cout << "Ada Kecoak X(\n";
-    } else if (n == 'A'){
+        }
+    }
+    else if (n == 'A'){
         karakter.x--;
         salah = 0;
-        for (int i = 0; i < 20; ++i)
-            if (karakter.y == temp[i].y && karakter.x == temp[i].y && (temp[i].health != 0 || temp[i].health != -1))
+        for (int i = 0; i < 20; ++i){
+            if (karakter.y == temp[i].y && karakter.x == temp[i].y && (temp[i].health != 0 || temp[i].health != -1)){
                 salah++;
-        if (salah > 0)
+            }
+        }
+        if (salah > 0){
             cout << "Ada temp X(\n";
-    } else if (n == 'S'){
+        }
+    }
+    else if (n == 'S'){
         karakter.y--;
         salah = 0;
-        for (int i = 0; i < 20; ++i)
-            if (karakter.y == temp[i].y && karakter.x == temp[i].y && (temp[i].health != 0 || temp[i].health != -1))
+        for (int i = 0; i < 20; ++i){
+            if (karakter.y == temp[i].y && karakter.x == temp[i].y && (temp[i].health != 0 || temp[i].health != -1)){
                 salah++;
-        if (salah > 0)
+            }
+        }
+        if (salah > 0){
             cout << "Ada Kecoak X(\n";
-    } else if (n == 'D'){
+        }
+    }
+    else if (n == 'D'){
         karakter.x++;
         salah = 0;
-        for (int i = 0; i < 20; ++i)
-            if (karakter.y == temp[i].y && karakter.x == temp[i].y && (temp[i].health != 0 || temp[i].health != -1))
+        for (int i = 0; i < 20; ++i){
+            if (karakter.y == temp[i].y && karakter.x == temp[i].y && (temp[i].health != 0 || temp[i].health != -1)){
                 salah++;
-        if (salah > 0)
+            }
+        }
+        if (salah > 0){
             cout << "Ada Kecoak X(\n";
+        }
     }
 }
 
@@ -191,55 +206,68 @@ void tembak(kecoak temp[], robot karakter){
     if (n == 'I') {
         cout << "=================================================\n";
         benar = 0;
-        for (int i = 0; i < 20 ; ++i)
+        for (int i = 0; i < 20 ; ++i){
             if ((temp[i].y >= karakter.y + 1 && temp[i].y <= karakter.y + jarak) && (temp[i].x == karakter.x)) {
                 temp[i].health -= karakter.att;
                 benar++;
             }
-        if (benar == 0)
+        }
+        if (benar == 0){
             cout << "temp diluar jangkauan\n";
+        }
         cout << "=================================================\n";
-    } else if (n == 'J'){
+    }
+    else if (n == 'J'){
         cout << "=================================================\n";
         benar = 0;
-        for (int i = 0; i < 20 ; ++i)
+        for (int i = 0; i < 20 ; ++i){
             if ((temp[i].x >= karakter.x - 1 && temp[i].x <= karakter.x - jarak) && (temp[i].y == karakter.y)) {
                 temp[i].health -= karakter.att;
                 benar++;
             }
-        if (benar == 0)
+        }
+        if (benar == 0){
             cout << "temp diluar jangkauan\n";
+        }
         cout << "=================================================\n";
-    } else if (n == 'K'){
+    }
+    else if (n == 'K'){
         cout << "=================================================\n";
         benar = 0;
-        for (int i = 0; i < 20 ; ++i)
+        for (int i = 0; i < 20 ; ++i){
             if ((temp[i].y >= karakter.y - 1 && temp[i].y <= karakter.y - jarak) && (temp[i].x == karakter.x)) {
                 temp[i].health -= karakter.att;
                 benar++;
             }
-        if (benar == 0)
+        }
+        if (benar == 0){
             cout << "temp diluar jangkauan\n";
+        }
         cout << "=================================================\n";
-    } else if (n == 'L'){
+    }
+    else if (n == 'L'){
         cout << "=================================================\n";
         benar = 0;
-        for (int i = 0; i < 20 ; ++i)
+        for (int i = 0; i < 20 ; ++i){
             if ((temp[i].x >= karakter.x + 1 && temp[i].x <= karakter.x + jarak) && (temp[i].y == karakter.y)) {
                 temp[i].health -= karakter.att;
                 benar++;
             }
-        if (benar == 0)
+        }
+        if (benar == 0){
             cout << "Kecoak diluar jangkauan\n";
+        }
         cout << "=================================================\n";
     }
 }
 
 int kecoak_mati(kecoak temp[]){
     int mati =0;
-    for (int i = 0; i < 20; ++i)
-        if (temp[i].health == 0)
+    for (int i = 0; i < 20; ++i){
+        if (temp[i].health == 0){
             mati++;
+        }
+    }
     return mati;
 }
 
@@ -247,10 +275,12 @@ int serangan_kecoak(kecoak temp[], robot karakter){
     int total_kecoak = 0;
     for (int i = 0; i < 20; ++i) {
         if (temp[i].x != -1 && temp[i].y != -1){
-            if (((karakter.x<=(temp[i].x+11) && karakter.x>=(temp[i].x+1)) || (karakter.x>=temp[i].x-11 && karakter.x<=temp[i].x-1)) && (karakter.y==temp[i].y) && (temp[i].health>0))
+            if (((karakter.x<=(temp[i].x+11) && karakter.x>=(temp[i].x+1)) || (karakter.x>=temp[i].x-11 && karakter.x<=temp[i].x-1)) && (karakter.y==temp[i].y) && (temp[i].health>0)){
                 total_kecoak++;
-            if (((karakter.y<=(temp[i].y+11) && karakter.y>=(temp[i].y+1)) || (karakter.y>=temp[i].y-11 && karakter.y<=temp[i].y-1)) && (karakter.x==temp[i].x) && (temp[i].health>0))
+            }
+            if (((karakter.y<=(temp[i].y+11) && karakter.y>=(temp[i].y+1)) || (karakter.y>=temp[i].y-11 && karakter.y<=temp[i].y-1)) && (karakter.x==temp[i].x) && (temp[i].health>0)){
                 total_kecoak++;
+            }
         }
     }
     karakter.health -= (total_kecoak*2); // 2 adalah damage kecoak
@@ -258,8 +288,8 @@ int serangan_kecoak(kecoak temp[], robot karakter){
 }
 
 void nyawa_kecoak(kecoak temp[]){
-    for (int i = 0; i < 20; ++i) {
-        if (temp[i].health != -1 && temp[i].health != 0) {
+    for (int i = 0; i < 20; ++i){
+        if (temp[i].health != -1 && temp[i].health != 0){
             cout << "Health kecoak " << i+1 << " (" << temp[i].x << temp[i].y << ") : " << temp[i].health;
         }
     }
