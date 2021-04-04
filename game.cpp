@@ -1,3 +1,5 @@
+// ROBY PURNOMO (16520331)
+// LUTHFI RESTU K (16520110)
 /* Program Kecoak vs Urang Robot */
 
 #include <iostream>
@@ -8,9 +10,9 @@ int i;
 int j;
 int x_robot; int y_robot;
 int x_kecoak; int y_kecoak;
-int k;
 
 bool kecoak (int x, int y, int x_kecoak[k], int y_kecoak[k]){
+    int k;
     for (k=0; k<20; k++){
         if (x == x_kecoak[k] && y == y_kecoak[k]){
             return true;
@@ -21,16 +23,41 @@ bool kecoak (int x, int y, int x_kecoak[k], int y_kecoak[k]){
 
 // fungsi papan
 void papan(){
-    for (i=19; i >-1; i--){
-        for (j=0; j<20; j++){
-            if (x_robot == j && y_robot == i){
-                cout<< "R "<<endl;
+    for (i=21; i >-1; i--){
+        if (i==0){
+            for (j=0; j<22; j++){
+                if (j==0){
+                    cout<< "   ";
+                }
+                else if (j<11){
+                    cout<<""<<j-1;
+                }
+                else {
+                    cout<<j-1;
+                }
             }
-            else if (kecoak(j,i,x_kecoak,y_kecoak) == true){
-                cout<<"K "<<endl;
-            }
-            else {
-                cout<<"_ "<<endl;
+        }
+        else {
+            for (j=0; j<22; j++){
+                if (j=0){
+                    if (i<11){
+                        cout<<""<<i-1;
+                    }
+                    else {
+                        cout << i-1;
+                    }
+                }
+                else{
+                    if (x_robot==j-1 && y_robot==i-1){
+                        cout<< "R";
+                    }
+                    else if (kecoak(j-1,i-1,x_kecoak,y_kecoak)== true){
+                        cout<<"K";
+                    }
+                    else{
+                        cout<<" _";
+                    }
+                }
             }
         }
         cout<<endl;
@@ -38,9 +65,9 @@ void papan(){
 }
 
 // fungsi cekkecoak
-void cekkecoak(int x, int y, int x_kecoak, int y_kecoak){
+bool cekkecoak(int x, int y, int x_kecoak, int y_kecoak){
     int salah = 0;
-    for (i=0, i<20, i++){
+    for (i=0; i<20; i++){
         if (x == x_kecoak[i] || y == y_kecoak[i]){
             salah = salah + 1;
         }
@@ -65,7 +92,7 @@ void kecoak_baru(int x, int y, int x_kecoak, int y_kecoak){
             y = rand()%21;
         }
     }
-    for (i=0, i<20, i++){
+    for (i=0; i<20; i++){
         if (-1==x_kecoak[i] || -1 == y_kecoak[i]){
             urut = i;
             break;
@@ -74,10 +101,10 @@ void kecoak_baru(int x, int y, int x_kecoak, int y_kecoak){
     int x_kecoak[urut] = x;
     int y_kecoak[urut] = y;
     int health_kecoak[urut] = 100;
-    cout << "Muncul kecoak" << urut << "("<< str(x)<< ", " << str(y) << ")" <<endl;
+    cout << "Muncul kecoak" << urut << "("<< x<< ", " << y << ")" <<endl;
 }
 // fungsi pindah tempat
-void pindah(int x_robot,int y_robot,int x_kecoak,int y_kecoak){
+int pindah(int x_robot,int y_robot,int x_kecoak,int y_kecoak){
     int salah;
     if (x_robot != 0 && x_robot != 20) {
         cout <<"A : kiri" <<endl;
@@ -104,7 +131,7 @@ void pindah(int x_robot,int y_robot,int x_kecoak,int y_kecoak){
     if (n=="W"){
         y_robot = y_robot + 1;
         salah = 0;
-        for (i=0, i<20, i++){
+        for (i=0; i<20; i++){
             if (y_robot == y_kecoak[i]){
                 salah = salah + 1;
             }
@@ -119,7 +146,7 @@ void pindah(int x_robot,int y_robot,int x_kecoak,int y_kecoak){
     else if (n=="A"){
         x_robot=x_robot - 1;
         salah = 0;
-        for (i=0, i<20, i++){
+        for (i=0; i<20; i++){
             if (x_robot==x_kecoak[i]){
                 salah = salah + 1;
             }
@@ -134,7 +161,7 @@ void pindah(int x_robot,int y_robot,int x_kecoak,int y_kecoak){
     else if (n=="S"){
         y_robot = y_robot - 1;
         salah = 0;
-        for (i=0, i<20, i++){
+        for (i=0; i<20; i++){
             if (y_robot == y_kecoak[i]) {
                 salah = salah + 1;
             }
@@ -149,7 +176,7 @@ void pindah(int x_robot,int y_robot,int x_kecoak,int y_kecoak){
     else if (n == "D"){
         x_robot = x_robot + 1;
         salah = 0;
-        for (i=0, i<20, i++){
+        for (i=0; i<20; i++){
             if (x_robot == x_kecoak[i]){
                 salah = salah + 1;
             }
@@ -176,7 +203,7 @@ void tembak(int x_robot, int y_robot, int x_kecoak, int y_kecoak,int health_keco
     if (n == "I"){
         cout<<"================================================="<<endl;
         int benar = 0;
-        for (i=20, i<20, i++){
+        for (i=20; i<20; i++){
             if (y_kecoak[i] >= y_robot + 1 && y_kecoak[i] <= y_robot + jarak){
                 health_kecoak[i] = health_kecoak[i] - att;
                 cout<<"Health Kecoak" << i << "=" << health_kecoak[i]<<endl;
@@ -191,7 +218,7 @@ void tembak(int x_robot, int y_robot, int x_kecoak, int y_kecoak,int health_keco
     else if (n=="J"){
         cout<<"================================================="<<endl;
         benar = 0;
-        for (i=20, i<20, i++){
+        for (i=20; i<20; i++){
             if (x_kecoak[i] >= x_robot - 1 && x_kecoak[i] <= x_robot - jarak){
                 health_kecoak[i] = health_kecoak[i] - att;
                 cout<<"Health Kecoak"<< i << "=" << health_kecoak[i]<<endl;
@@ -206,7 +233,7 @@ void tembak(int x_robot, int y_robot, int x_kecoak, int y_kecoak,int health_keco
     else if (n =="K"){
         cout<<"================================================="<<endl;
         benar = 0;
-        for (i=20, i<20, i++){
+        for (i=20; i<20; i++){
             if (y_kecoak[i] >= y_robot - 1 && y_kecoak[i] <= y_robot - jarak){
                 health_kecoak[i] = health_kecoak[i] - att;
                 cout<<"Health Kecoak"<< i<< "="<< health_kecoak[i];
@@ -221,7 +248,7 @@ void tembak(int x_robot, int y_robot, int x_kecoak, int y_kecoak,int health_keco
     else if (n=="L"){
         cout<<"================================================="<<endl;
         benar = 0;
-        for (i=0, i<20, i++){
+        for (i=0; i<20; i++){
             if (x_kecoak[i] >= x_robot + 1 && x_kecoak[i] <= x_robot + jarak){
                 health_kecoak[i] = health_kecoak[i] - att;
                 cout<<"Health Kecoak"<<i<<"="<< health_kecoak[i];
@@ -241,12 +268,35 @@ void robot(int health, int att){
 
 void kecoakmati(int health_kecoak){
     int mati = 0;
-    for (i=0, i<20, i++){
+    for (i=0; i<20; i++){
         if (health_kecoak[i] == 0){
             mati = mati +1;
         }
     }
     return mati;
+}
+
+int serangankecoak(int x_robot,int y_robot, int x_kecoak,int  y_kecoak,int health_kecoak,int health_robot){
+    int kecoak = 0;
+    for (i=0; i<20; i++){
+        if (x_kecoak[i]!=-1 && y_kecoak[i]!=-1){
+            if ((x_robot<=(x_kecoak[i]+11) && x_robot>=(x_kecoak[i]+1)) || (x_robot>=x_kecoak[i]-11 && x_robot<=x_kecoak[i]-1)) && (y_robot==y_kecoak[i]) && (health_kecoak[i]>0){
+                kecoak = kecoak + 1;
+            }
+            if ((y_robot<=(y_kecoak[i]+11) && y_robot>=(y_kecoak[i]+1)) || (y_robot>=y_kecoak[i]-11 && y_robot<=y_kecoak[i]-1)) && (x_robot==x_kecoak[i]) && (health_kecoak[i]>0){
+                kecoak = kecoak + 1;
+            }
+        }
+    health_robot = health_robot - (kecoak * 2);  // 2 adalah damage yang diberikan setiap kecoak
+    return health_robot;
+    }
+}
+void nyawa_kecoak(int x_kecoak, int y_kecoak, int health_kecoak){
+    for (i=0; i<20; i++){
+        if (health_kecoak[i] != -1 and health_kecoak[i] != 0){
+            cout<<"Health Kecoak"<< i+1 <<"("<< x_kecoak[i]<<", "<<(y_kecoak[i])<<") :"<< health_kecoak[i];
+        }
+    }
 }
 
 main()
@@ -258,17 +308,32 @@ main()
     int y_robot = 0;
     int health_robot = 100;
     int att_robot = 50;
-    int x_kecoak = [-1 for i in range (20)];
-    int y_kecoak = [-1 for i in range (20)];
-    int health_kecoak = {-1 for (i=0; i<20;i++)};
+    int x_kecoak;
+    int y_kecoak;
+    int health_kecoak;
+    int turn = 0;
     while (health_robot > 0 || kecoakmati(health_kecoak)==20){
         kecoak_baru(x_robot,y_robot,x_kecoak,y_kecoak);
         papan();
         cout<<"================================================="<<endl;
-        cout<<"Pindah(1) atau tembak(2) ?"<<endl;
-        int a;
+        cout<<"";
+        turn = 0;
+        if (turn%4==0){
+            cout<<"KECOAK MENYERANG!!!"<<endl;
+            cout<<"";
+            health_robot = serangankecoak(x_robot, y_robot, x_kecoak, y_kecoak, health_kecoak, health_robot);
+        }
+        cout <<"Health robot ("<< x_robot <<", "<<y_robot<<")"<<"saat ini :"<< health_robot<<endl;
+        cout <<"";
+        cout <<"Kecoak yang telah dibunuh :"<< kecoakmati(health_kecoak);
+        nyawa_kecoak(x_kecoak, y_kecoak, health_kecoak);
+        cout <<"";
+        cout <<"";
+        cout << "=================================================";
+        cout << "Pindah(1) atau Tembak(2)?";
+        char a;
         cin >> a;
-        if (a == 1){
+        if (a==1){
             x_robot, y_robot = pindah(x_robot,y_robot,x_kecoak,y_kecoak);
         }
         else if (a == 2){
@@ -276,7 +341,8 @@ main()
         }
         cout<<"=================================================";
     }
+    cout<<"PERMAINAN SELESAI";
+    cout<<"";
+    cout<<"Kecoak yang berhasil dibunuh :", kecoakmati(health_kecoak);
     return 0;
-
-
 }
